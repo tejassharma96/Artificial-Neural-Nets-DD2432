@@ -2,14 +2,6 @@
 % needs to be repeated epochs times, 20 is a good number for epoch
 % learning factor should be suitably small: 0.001
 
-clear;
-sepdata;
-learning_factor = 0.001
-
-% get dimensions
-[insize, ndata] = size(patterns)
-[outsize, ndata] = size(targets)
-
 % set up X so that it has the extra layer of 1s for the bias
 X = [patterns; ones(1, ndata)];
 

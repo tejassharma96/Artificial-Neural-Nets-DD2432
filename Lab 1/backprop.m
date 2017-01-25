@@ -5,20 +5,8 @@
 %                            deltaV = -learning_factor*delta_o*H'
 % use momentum (formula from lab pdf, can't be bothered to write it here)
 
-clear;
-sepdata;
-learning_factor = 0.001;
-momentum = 0.9;
-
-% get dimensions
-[insize, ndata] = size(patterns);
-[outsize, ndata] = size(targets);
-
 % set up X so that it has the extra layer of 1s for the bias
 X = [patterns; ones(1, ndata)];
-
-% define a variable for the number of nodes in the hidden layer
-hidden_nodes = insize + 2; % is that a good number?
 
 % generate weights
 W = randn(hidden_nodes, insize + 1);
