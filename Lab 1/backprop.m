@@ -27,3 +27,7 @@ V = randn(1, hidden_nodes + 1)
 % set up delta values for weights so we can use momentum
 delta_W = 0
 delta_V = 0
+
+for i = 0:epochs
+
+endfor
