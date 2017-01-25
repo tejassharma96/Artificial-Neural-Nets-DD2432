@@ -18,8 +18,23 @@ targets = reshape (z, 1, ndata);
 [xx, yy] = meshgrid(x, y);
 patterns = [reshape(xx, 1, ndata); reshape(yy, 1, ndata)];
 
+% permute and use first n
+% save targets and patterns first for for second forward pass
+targets_orig = targets;
+patterns_orig = patterns;
+ndata_orig = ndata;
+
+n = 25; % change between 10 and 25
+permute = randperm(ndata);
+patterns = patterns(:, permute);
+targets = targets(:, permute);
+
+patterns = patterns(:, 1:n);
+targets = targets(:, 1:n);
+
 create_constants; % create necessary constants
-epochs = 7000;
+epochs = 5000;
+hidden_nodes = 5; % change between 5 and 25
 
 % Can't use the function if we want to graph each epoch, have to copy the code here :-(
 X = [patterns; ones(1, ndata)];
@@ -38,7 +53,7 @@ error = zeros(1, epochs);
 for epoch = 1:epochs
     % forward pass
     hin = W*X;
-    hout = [2 ./ (1 + exp(-hin)) - 1; ones(1, ndata)]; %phi function
+    hout = [2 ./ (1 + exp(-hin)) - 1; ones(1, ndata)]; % phi function
 
     oin = V * hout;
     out = 2 ./ (1 + exp(-oin)) - 1; % phi function
@@ -57,8 +72,15 @@ for epoch = 1:epochs
     % update error
     error(epoch) = sum(sum(abs(sign(out) - targets) ./ 2));
 
+    % forward pass for test
+    hin_test = W*[patterns_orig; ones(1, ndata_orig)];
+    hout_test = [2 ./ (1 + exp(-hin_test)) - 1; ones(1, ndata_orig)]; % phi function
+
+    oin_test = V*hout_test;
+    out_test = 2 ./ (1 + exp(-oin_test)) - 1; % phi function
+
     % plot result
-    zz = reshape(out, gridsize, gridsize);
+    zz = reshape(out_test, gridsize, gridsize);
     figure(2);
     mesh(x, y, zz)
     axis([-5 5 -5 5 -0.7 0.7]);
