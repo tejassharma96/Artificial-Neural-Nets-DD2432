@@ -33,4 +33,4 @@ for i = 0:epochs
         [p(2), p(2)]*k + [p(1), -p(1)]/l, '-');
     drawnow;
 
-end
+endfor

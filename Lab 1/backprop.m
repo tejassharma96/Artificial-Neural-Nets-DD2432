@@ -19,3 +19,11 @@ X = [patterns; ones(1, ndata)];
 
 % define a variable for the number of nodes in the hidden layer
 hidden_nodes = 3
+
+% generate weights
+W = randn(1, insize + 1)
+V = randn(1, hidden_nodes + 1)
+
+% set up delta values for weights so we can use momentum
+delta_W = 0
+delta_V = 0
