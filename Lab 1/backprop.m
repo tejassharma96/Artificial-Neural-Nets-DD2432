@@ -8,34 +8,51 @@
 clear;
 sepdata;
 learning_factor = 0.001;
-momentum = 0.9
+momentum = 0.9;
 
 % get dimensions
-[insize, ndata] = size(patterns)
-[outsize, ndata] = size(targets)
+[insize, ndata] = size(patterns);
+[outsize, ndata] = size(targets);
 
 % set up X so that it has the extra layer of 1s for the bias
 X = [patterns; ones(1, ndata)];
 
 % define a variable for the number of nodes in the hidden layer
-hidden_nodes = 3
+hidden_nodes = insize + 2; % is that a good number?
 
 % generate weights
-W = randn(1, insize + 1)
-V = randn(1, hidden_nodes + 1)
+W = randn(hidden_nodes, insize + 1);
+V = randn(1, hidden_nodes + 1);
 
 % set up delta values for weights so we can use momentum
-delta_W = 0
-delta_V = 0
+delta_W = 0;
+delta_V = 0;
 
-for i = 0:epochs
+% define an error vector
+error = zeros(1, epochs);
+
+for epoch = 1:epochs
     % forward pass
     hin = W*X;
-    hout = [2 ./ (1 + exp(-hin)) - 1; ndata]; %phi function
+    hout = [2 ./ (1 + exp(-hin)) - 1; ones(1, ndata)]; %phi function
 
-    oin = v * hout
+    oin = V * hout;
     out = 2 ./ (1 + exp(-oin)) - 1; % phi function
 
     % backward pass
-    
+    delta_o = (out - targets) .* ((1 + out) .* (1 - out)) * 0.5; % phi prime
+    delta_h = (V' * delta_o) .* ((1 + hout) .* (1- hout)) * 0.5; % phi prime
+    delta_h = delta_h(1:hidden_nodes, :); % remove extra layer
+
+    % updating weights
+    delta_W = (delta_W .* momentum) - (delta_h * X') .* (1 - momentum);
+    delta_V = (delta_V .* momentum) - (delta_o * hout') .* (1 - momentum);
+    W = W + delta_W .* learning_factor;
+    V = V + delta_V .* learning_factor;
+
+    % update error
+    error(epoch) = sum(sum(abs(sign(out) - targets) ./ 2));
+
 endfor
+
+plot(1:epochs, error);
