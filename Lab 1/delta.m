@@ -3,9 +3,8 @@
 % learning factor should be suitably small: 0.001
 
 clear;
-nsepdata;
+sepdata;
 learning_factor = 0.001
-epochs = 20
 
 % get dimensions
 [insize, ndata] = size(patterns)

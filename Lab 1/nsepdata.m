@@ -13,3 +13,5 @@ targets = [ones(1,100), -ones(1,100)];
 permute = randperm(200);
 patterns = patterns(:, permute);
 targets = targets(:, permute);
+
+epochs = 20;
