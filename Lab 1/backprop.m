@@ -10,7 +10,7 @@ X = [patterns; ones(1, ndata)];
 
 % generate weights
 W = randn(hidden_nodes, insize + 1);
-V = randn(1, hidden_nodes + 1);
+V = randn(insize, hidden_nodes + 1);
 
 % set up delta values for weights so we can use momentum
 delta_W = 0;
@@ -42,5 +42,3 @@ for epoch = 1:epochs
     error(epoch) = sum(sum(abs(sign(out) - targets) ./ 2));
 
 endfor
-
-plot(1:epochs, error);

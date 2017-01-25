@@ -13,4 +13,4 @@ momentum = 0.9;
 [outsize, ndata] = size(targets);
 
 % number of nodes in the second layer
-hidden_nodes = insize + 2;
+hidden_nodes = 4;
