@@ -3,6 +3,7 @@
 % backward pass: compute the error signal delta for each node, starting at the last layer and going backwards
 % finally update weight with deltaW = -learning_factor*delta_h*X'
 %                            deltaV = -learning_factor*delta_o*H'
+% use momentum (formula from lab pdf, can't be bothered to write it here)
 
 clear;
 sepdata;
@@ -15,3 +16,6 @@ momentum = 0.9
 
 % set up X so that it has the extra layer of 1s for the bias
 X = [patterns; ones(1, ndata)];
+
+% define a variable for the number of nodes in the hidden layer
+hidden_nodes = 3
