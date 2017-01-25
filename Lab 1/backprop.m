@@ -29,5 +29,13 @@ delta_W = 0
 delta_V = 0
 
 for i = 0:epochs
+    % forward pass
+    hin = W*X;
+    hout = [2 ./ (1 + exp(-hin)) - 1; ndata]; %phi function
 
+    oin = v * hout
+    out = 2 ./ (1 + exp(-oin)) - 1; % phi function
+
+    % backward pass
+    
 endfor
