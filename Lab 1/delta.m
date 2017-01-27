@@ -6,7 +6,7 @@
 X = [patterns; ones(1, ndata)];
 
 % generate weights
-W = randn(1, insize + 1);
+W = randn(outsize, insize + 1);
 
 % perform delta rule
 for i = 0:epochs
