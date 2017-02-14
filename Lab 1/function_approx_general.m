@@ -24,7 +24,7 @@ targets_orig = targets;
 patterns_orig = patterns;
 ndata_orig = ndata;
 
-n = 25; % change between 10 and 25
+n = 10; % change between 10 and 25
 permute = randperm(ndata);
 patterns = patterns(:, permute);
 targets = targets(:, permute);
@@ -34,7 +34,7 @@ targets = targets(:, 1:n);
 
 create_constants; % create necessary constants
 epochs = 5000;
-hidden_nodes = 5; % change between 5 and 25
+hidden_nodes = 25; % change between 5 and 25
 
 % Can't use the function if we want to graph each epoch, have to copy the code here :-(
 X = [patterns; ones(1, ndata)];
@@ -79,11 +79,13 @@ for epoch = 1:epochs
     oin_test = V*hout_test;
     out_test = 2 ./ (1 + exp(-oin_test)) - 1; % phi function
 
-    % plot result
-    zz = reshape(out_test, gridsize, gridsize);
-    figure(2);
-    mesh(x, y, zz)
-    axis([-5 5 -5 5 -0.7 0.7]);
-    drawnow;
+    
 
 endfor
+
+% plot result
+zz = reshape(out_test, gridsize, gridsize);
+figure(2);
+mesh(x, y, zz)
+axis([-5 5 -5 5 -0.7 0.7]);
+drawnow;
