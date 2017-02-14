@@ -1,20 +1,21 @@
 clear;
 close all;
-animals;
+cities;
 
-w = rand(100, 84);
+w = rand(10, 2);
 eta = 0.2;
 epochs = 50;
 
 for i = 1:epochs
     % outer loop
-    for a = 1:32
-        p = props(a, :);
-        dist = (ones(100, 1) * p - w);
+    for a = 1:10
+        p = city(a, :);
+        dist = abs(p(a)(1) - w(a)(1)) + abs(p(a)(2) - w(a)(2));
         dist_squared = sum(dist.^2, 2);
         [val index] = min(dist_squared);
 
-        radius = (epochs + 1 - i)*2;
+        %radius = (epochs + 1 - i)*2;
+        radius = 2
         min_index = index - radius;
         max_index = index + radius;
         if min_index < 1
@@ -29,15 +30,3 @@ for i = 1:epochs
 
     endfor
 endfor
-
-pos = zeros(32, 1);
-for a = 1:32
-    p = props(a,:);
-    dist = (ones(100,1) * p - w);
-    dist_squared = sum(dist.^2, 2);
-    [val index] = min(dist_squared);
-    pos(a) = index;
-endfor
-
-[dummy, order] = sort(pos);
-snames(order)'
