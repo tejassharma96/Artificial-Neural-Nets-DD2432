@@ -4,29 +4,26 @@ cities;
 
 w = rand(10, 2);
 eta = 0.2;
-epochs = 50;
+epochs = 10;
+for n = [2 1 0]
+    for i = 1:(epochs * (3-n))
+        % outer loop
+        for a = 1:10
+            p = city(a, :);
+            dist = [abs(w(:, 1) - p(1)) abs(w(:, 2) - p(2))];
+            dist_squared = sum(dist.^2, 2);
+            [val index] = min(dist_squared);
 
-for i = 1:epochs
-    % outer loop
-    for a = 1:10
-        p = city(a, :);
-        dist = abs(p(a)(1) - w(a)(1)) + abs(p(a)(2) - w(a)(2));
-        dist_squared = sum(dist.^2, 2);
-        [val index] = min(dist_squared);
+            for ind = 1:10
+                if abs(mod(ind - index, 10)) <= n
+                    w(ind, :) = (1 - eta)*w(ind, :) + eta*(p);
+                endif
+            endfor
 
-        %radius = (epochs + 1 - i)*2;
-        radius = 2
-        min_index = index - radius;
-        max_index = index + radius;
-        if min_index < 1
-            min_index = 1;
-        endif
-        if max_index > 100
-            max_index = 100;
-        endif
-        for ind = min_index:max_index
-            w(ind, :) = w(ind, :) + eta*(p - w(ind, :));
+            tour = [w;w(1,:)];
+            plot(tour(:,1),tour(:,2),'b-*',city(:,1),city(:,2),'+')
+            title(['Cities, neighborhood size=' int2str(n) ', epoch ' int2str(i)])
+            pause(0.01)
         endfor
-
     endfor
 endfor
