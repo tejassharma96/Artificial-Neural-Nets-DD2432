@@ -10,9 +10,13 @@ for i = 1:epochs
     % outer loop
     for a = 1:32
         p = props(a, :);
+        m = w(1);
+        for t = 1:100
+                
+        endfor
+        dist = (ones(100, 1) * p - w)
         dist_squared = (ones(100, 1) * p - w)' * (ones(100, 1) * p - w);
         [val index] = min(dist_squared);
-        winner = w(index);
 
         radius = (epochs + 1 - i)*2;
         min_index = index - radius;
@@ -23,7 +27,8 @@ for i = 1:epochs
         if max_index > 100
             max_index = 100;
         endif
-
+        min_index
+        max_index
         for ind = min_index:max_index
             w(ind, :) = w(ind, :) + eta*(p - w(ind, :));
         endfor
