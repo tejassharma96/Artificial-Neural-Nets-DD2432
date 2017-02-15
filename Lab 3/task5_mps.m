@@ -4,10 +4,10 @@ close all;
 [x,y]= meshgrid([1:10],[1:10]);
 xpos = reshape(x, 1, 100);
 ypos = reshape(y, 1, 100);
-votes;
-mpparty;
-mpsex;
-mpdistrict;
+setvotes;
+setmpparty;
+setmpsex;
+setmpdistrict;
 eta = 0.2;
 epochs = 50;
 pos = ones(1, 349);
@@ -30,13 +30,13 @@ for i = 1:epochs
             d = abs(xpos(ind) - xpos(index)) + abs(ypos(ind) - ypos(index));
             if d <= n
                 w(ind, :) = w(ind, :) + eta*(mp - w(ind, :));
-            endif
-        endfor
+            end
+        end
         pos(a) = index;
         party(index, mpparty(a)+1) = party(index, mpparty(a)+1) + 1;
 
-    endfor
-endfor
+    end
+end
 
 a = ones(1, 100) * 350;
 a(pos) = 1:349;
@@ -48,23 +48,23 @@ for i = 1:100
     [vmax posMax] = max(party(i, :));
     if vmax > 0
         b(i) = posMax;
-    endif
-endfor
+    end
+end
 
 figure(1);
-title('Most common party per unit');
 p = [mpparty;0];
 colormap([0 0 0; 0 0 1; 0 1 1; 1 0 1; 1 0 0; 0 1 0; 1 1 1; 1 1 0])
+title('Most common party per unit');
 image(p(reshape(a,10,10))+1);
 
 figure(2);
-title('Most common district per unit');
 d = [mpdistrict;0];
 colormap([0 0 0; 0 0 1; 0 1 1; 1 0 1; 1 0 0; 0 1 0; 1 1 1; 1 1 0])
+title('Most common district per unit');
 image(d(reshape(a,10,10))+1);
 
 figure(3);
-title('Most common sex per unit');
 s = [mpsex;0];
 colormap([0 0 0; 0 0 1; 0 1 1; 1 0 1; 1 0 0; 0 1 0; 1 1 1; 1 1 0])
+title('Most common sex per unit');
 image(s(reshape(a,10,10))+1);

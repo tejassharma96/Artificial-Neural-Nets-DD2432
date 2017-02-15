@@ -19,16 +19,16 @@ for i = 1:epochs
         max_index = index + radius;
         if min_index < 1
             min_index = 1;
-        endif
+        end
         if max_index > 100
             max_index = 100;
-        endif
+        end
         for ind = min_index:max_index
             w(ind, :) = w(ind, :) + eta*(p - w(ind, :));
-        endfor
+        end
 
-    endfor
-endfor
+    end
+end
 
 pos = zeros(32, 1);
 for a = 1:32
@@ -37,7 +37,7 @@ for a = 1:32
     dist_squared = sum(dist.^2, 2);
     [val index] = min(dist_squared);
     pos(a) = index;
-endfor
+end
 
 [dummy, order] = sort(pos);
-snames(order)'
+table(snames(order)', pos(order))
