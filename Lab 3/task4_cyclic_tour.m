@@ -2,7 +2,7 @@ clear;
 close all;
 cities;
 
-out_nodes = 20;
+out_nodes = 12;
 w = rand(out_nodes, 2);
 eta = 0.2;
 epochs = 10;
@@ -13,7 +13,7 @@ for n = [2 1 0]
             p = city(a, :);
             dist = [abs(w(:, 1) - p(1)) abs(w(:, 2) - p(2))];
             dist_squared = sum(dist.^2, 2);
-            [val index] = min(dist_squared);
+            [val, index] = min(dist_squared);
 
             for ind = 1:out_nodes
                 if abs(mod(ind - index, 10)) <= n
