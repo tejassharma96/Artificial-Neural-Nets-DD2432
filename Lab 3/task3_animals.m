@@ -4,7 +4,7 @@ animals;
 
 w = rand(100, 84);
 eta = 0.2;
-epochs = 50;
+epochs = 40;
 
 for i = 1:epochs
     % outer loop
@@ -40,4 +40,5 @@ for a = 1:32
 end
 
 [dummy, order] = sort(pos);
-table(snames(order)', pos(order))
+epochs
+table(snames(order)', pos(order), 'VariableNames', {'Animal', 'Cluster'})
