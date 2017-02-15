@@ -349,3 +349,5 @@ mpsex = [0
 	 1
 	 0
 	 1];
+
+mpsex_labels = {'male';'female'};

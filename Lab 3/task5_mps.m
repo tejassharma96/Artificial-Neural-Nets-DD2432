@@ -8,6 +8,7 @@ setvotes;
 setmpparty;
 setmpsex;
 setmpdistrict;
+setmpnames;
 eta = 0.2;
 epochs = 50;
 pos = ones(1, 349);
@@ -41,12 +42,12 @@ end
 a = ones(1, 100) * 350;
 a(pos) = 1:349;
 
-[~, order] = sort(pos);
-t_manhattan = table(names(order), sex_labels(((sex(order) + 1)')), ...
-    party_labels(((parties(order) + 1)')), ...
-    districts(order), ...
-    clustering(order), ...
-    'VariableNames',{'Name','Sex','Party','District','Cluster'});
+%[~, order] = sort(pos);
+%t_manhattan = table(mpnames(order), mpsex_labels(((mpsex(order) + 1)')), ...
+%    party_labels(((mpparty(order) + 1)')), ...
+%    mpdistrict(order), ...
+%    pos(order), ...
+%    'VariableNames',{'Name','Sex','Party','District','Cluster'});
 
 % Display
 b = zeros(1, 100);
@@ -65,7 +66,7 @@ image(p(reshape(a,10,10))+1);
 
 figure(2);
 d = [mpdistrict;0];
-colormap([0 0 0; 0 0 1; 0 1 1; 1 0 1; 1 0 0; 0 1 0; 1 1 1; 1 1 0])
+colormap default
 title('Most common district per unit');
 image(d(reshape(a,10,10))+1);
 

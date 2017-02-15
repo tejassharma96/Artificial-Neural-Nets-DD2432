@@ -1,6 +1,7 @@
 % Coding: 0=no party, 1='m', 2='fp', 3='s', 4='v', 5='mp', 6='kd', 7='c'
 
 colormap([0 0 0; 0 0 1; 0 1 1; 1 0 1; 1 0 0; 0 1 0; 1 1 1; 1 1 0])
+party_labels = {'no party'; 'm'; 'fp'; 's'; 'v'; 'mp'; 'kd'; 'c'};
 
 mpparty = [1
 	   2
