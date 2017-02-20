@@ -2,7 +2,7 @@ clear;
 close all;
 cities;
 
-out_nodes = 12;
+out_nodes = 20;
 w = rand(out_nodes, 2);
 eta = 0.2;
 epochs = 10;
@@ -16,7 +16,7 @@ for n = [2 1 0]
             [val, index] = min(dist_squared);
 
             for ind = 1:out_nodes
-                if abs(mod(ind - index, 10)) <= n
+                if abs(mod(ind - index, out_nodes)) <= n
                     w(ind, :) = (1 - eta)*w(ind, :) + eta*(p);
                 end
             end
