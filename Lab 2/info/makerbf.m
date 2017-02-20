@@ -4,7 +4,7 @@
 % units : number of RBF units
 % Output:
 % m	: vector of RBF positions
-% var	: vector of RBF variances
+% variance	: vector of RBF variances
 % xmin	: x data min
 % xmax	: x data max
 
@@ -15,9 +15,9 @@ xmin=fmin-(fmax-fmin)*margin;
 xmax=fmax+(fmax-fmin)*margin;
 
 global m;
-global var;
+global variance;
 global w;
-[m var]=fixrbf1(units,fmin,fmax);
+[m, variance]=fixrbf1(units,fmin,fmax);
 
 %Initialize the weight vector with random values
 w=rand(rows(m),1)+0.1;
