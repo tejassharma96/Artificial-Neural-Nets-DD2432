@@ -1,12 +1,12 @@
 clear;
 %close all;
 
-x = (0:0.1:2*pi)';
+x = (0:0.1:7)';
 % f = sin(2*x) or f = square(2*x)
-f = sin(2*x);
+f = our_function(2*x);
 n = size(x, 1);
 N = n;
-units = 8;
+units = 71;
 
 makerbf;
 phi = calcPhi(x, m, variance);

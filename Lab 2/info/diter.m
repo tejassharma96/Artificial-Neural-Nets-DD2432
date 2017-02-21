@@ -21,7 +21,6 @@ while iter<iterstop
     rphi=gauss(rx,m,variance);
     ry=rphi'*w;
     err=feval(fun,rx)-ry;
-    eta = err/4;
     w=w+eta*err*rphi;
     esum=esum+sqrt(sum(err.*err));
   end
@@ -30,7 +29,7 @@ while iter<iterstop
 y=Phi*w;
 
 subplot(3,1,1); plot(iterstart+1:itersub:iterstop,log(psum));
-title(['RBF-units=' int2str(units) ', ' alg ': log(error vs iter)']);
+title(['RBF-units=' int2str(units) ', Eta=' int2str(eta) ', ' alg ': log(error vs iter)']);
 subplot(3,1,2); plot(x,y,x,f);title('Function y and desired y');
 subplot(3,1,3); plot(x,f-y);
 title(['Residual, max= ' num2str(max(abs(f-y)))]);
@@ -42,9 +41,9 @@ iter=iterstop
 y=Phi*w;
 
 subplot(3,1,1); plot(iterstart+1:itersub:iterstop,log(psum));
-title(['RBF-units=' int2str(units) ', ' alg ': log(error vs iter)']);
+title(['RBF-units=' int2str(units) ', Eta=' int2str(eta) ', ' alg ': log(error vs iter)']);
 subplot(3,1,2); plot(x,y,x,f);title('Function y and desired y');
 subplot(3,1,3); plot(x,f-y);
-title(['Residual, max= ' num2str(max(abs(f-y)))]);
+title(['Residual, max= ' num2str(max(abs(f-y))) ', mean=' num2str(mean(abs(f-y)))]);
 
 %Find the actual output by using the calculated weight vector
