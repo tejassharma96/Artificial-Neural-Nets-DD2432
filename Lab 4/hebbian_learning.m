@@ -18,3 +18,12 @@ w = calc_weights(mat);
 isequal(x1, x1_updated)
 isequal(x2, x2_updated)
 isequal(x3, x3_updated)
+
+% see if memory can recall from distorted input patterns
+x1d=vm([1 0 1 0 1 0 0 1]);
+x2d=vm([1 1 0 0 0 1 0 0]);
+x3d=vm([1 1 1 0 1 1 0 1]);
+
+test_patterns = [x1d; x2d; x3d];
+for x in test_patterns
+
