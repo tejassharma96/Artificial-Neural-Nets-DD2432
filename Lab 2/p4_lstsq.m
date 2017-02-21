@@ -40,5 +40,5 @@ sin(x) > 0, square(x) = 1
   sign of it
   Theoretically should be doable with units = 6
   Apparently not close enough though
-- Not sure about XOR
+- Yes XOR should be doable
 %}
