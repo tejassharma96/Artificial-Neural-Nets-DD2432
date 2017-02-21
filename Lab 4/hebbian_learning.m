@@ -23,13 +23,13 @@ isequal(x3, x3_updated);
 x1d=vm([1 0 1 0 1 0 0 1]);
 x2d=vm([1 1 0 0 0 1 0 0]);
 x3d=vm([1 1 1 0 1 1 0 1]);
-x4d = vm([0 0 1 0 1 0 0 1]);
-x5d = vm([0 0 1 0 1 0 0 1]);
+x4d = vm([0 1 1 1 1 1 1 1]);
+x5d = vm([0 0 1 1 1 0 1 1]);
 
-test_patterns = [x1d; x2d; x3d];
+test_patterns = [x1d; x2d; x3d; x4d; x5d];
 for x = test_patterns'
     [x_updated, it] = update_patterns(w, x');
-    fprintf('Got %s from %s in %d iterations\n', num2str(t0(x_updated)), num2str(t0(x')), it);
+%     fprintf('Got %s from %s in %d iterations\n', num2str(t0(x_updated)), num2str(t0(x')), it);
 end
 
 % success!
