@@ -34,8 +34,8 @@ xlim([1 7]);
 ylim([1 7]);
 
 global m;
-[m var]=initrbf(units,cols(data),dmin,dmax);
-plotrbf2(h,m,var,p1,p2);
+[m, variance]=initrbf(units,cols(data),dmin,dmax);
+plotrbf2(h,m,variance,p1,p2);
 %plotrefresh(pd);
 
-etha=var*0+1/units;
+etha=variance*0+1/units;

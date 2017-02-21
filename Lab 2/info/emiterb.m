@@ -7,7 +7,7 @@ diffvar = 1;
 while (diffvar>1e-7) & (diffm>1e-8)
   emstepb;	% A batchwise EM-step
   diffm = sum(sum((m-oldm).*(m-oldm)));
-  diffvar =sum((var-oldvar).*(var-oldvar));
+  diffvar =sum((variance-oldvar).*(variance-oldvar));
   %plotrefresh(pd);
   pause(0.3);
 end;

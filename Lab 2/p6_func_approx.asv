@@ -4,7 +4,7 @@ close all;
 [xtrain, ytrain] = readxy('ballist', 2, 2);
 [xtest, ytest] = readxy('balltest', 2, 2);
 
-units = 15;
+units = 20;
 data = xtrain;
 vqinit;
 singlewinner = 1;

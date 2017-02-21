@@ -12,15 +12,15 @@
 i=rows(data);
 dims=cols(m);
 oldm=m;
-oldvar=var;
+oldvar=variance;
 oldetha=etha;
 
 %plotbuffer(pd);
 m=m*0;
-var=var*0;
+variance=variance*0;
 etha=etha*0;
-%var=var*0+0.001;
-var=var*0+0.0001;
+%variance=variance*0+0.001;
+variance=variance*0+0.0001;
 
 dims=cols(m);
 while i>0
@@ -37,16 +37,16 @@ while i>0
   end;
   etha=etha+act;
   m=m+act*data(i,:);
-  var=(var+act*(data(i,:)*data(i,:)'));
+  variance=(variance+act*(data(i,:)*data(i,:)'));
   i=i-1;
 end
 m=divvec(m,etha);
-var=((var./etha)-mulrows(m,m))/dims;
+variance=((variance./etha)-mulrows(m,m))/dims;
 etha=etha/sum(etha);
 
 %ploterase(pd);
 clf;
 plotdata2(h,data);
-plotrbf2(h,m,var,p1,p2);
+plotrbf2(h,m,variance,p1,p2);
 %plotlines(pd,m,oldm,p1,p2);
 %plotrefresh(pd);
