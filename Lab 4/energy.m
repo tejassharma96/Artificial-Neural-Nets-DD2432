@@ -1,4 +1,4 @@
 function [ E ] = energy( w, x )
-    E = -sum(sum(w*(x'*x)));
+    E = -x' * w * x;
 end
 

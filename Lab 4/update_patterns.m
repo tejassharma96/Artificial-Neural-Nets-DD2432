@@ -1,7 +1,10 @@
-function [x_final, iterations] = update_patterns(w, x, iterlimit)
+function [x_final, iterations] = update_patterns(w, x, patterns, iterlimit)
     x = x';
+    if nargin < 4
+        iterlimit = 1000;
+    end
     if nargin < 3
-        iterlimit = 100;
+        patterns = 0;
     end
     converged = false;
     iterations = 0;
