@@ -1,10 +1,10 @@
 function [w] = calc_weights(patterns, normalize, correct_diagonal)
     [~, N] = size(patterns);
     if nargin < 3
-        correct_diagonal = 1;
+        correct_diagonal = true;
     end
     if nargin < 2
-        normalize = 0;
+        normalize = false;
     end
     w = patterns' * patterns;
     if normalize

@@ -7,7 +7,7 @@ x3 = vm([0 1 1 0 0 1 0 1]);
 mat = [x1; x2; x3];
 
 % calculate weights
-w = calc_weights(mat);
+w = calc_weights(mat, 1, 0);
 
 % run updates
 [x1_updated, ~] = update_patterns(w, x1);
@@ -36,7 +36,7 @@ end
 % number of attractors
 attractors = mat;
 for i = permn([0 1], 8)'
-    [x_updated, ~] = update_patterns(w, vm(i)');
+    [x_updated, ~] = update_patterns(w, vm(i)', 1000);
     if not(ismember(x_updated, attractors, 'rows'))
         attractors = [attractors; x_updated];
     end
