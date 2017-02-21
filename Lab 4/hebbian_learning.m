@@ -1,5 +1,5 @@
 clear;
-
+addpath('info');
 x1 = vm([0 0 1 0 1 0 0 1]);
 x2 = vm([0 0 0 0 0 1 0 0]);
 x3 = vm([0 1 1 0 0 1 0 1]);
@@ -7,7 +7,7 @@ x3 = vm([0 1 1 0 0 1 0 1]);
 mat = [x1; x2; x3];
 
 % calculate weights
-w = calc_weights(mat, 0, 0);
+w = calc_weights(mat);
 
 % run updates
 [x1_updated, ~] = update_patterns(w, x1);
