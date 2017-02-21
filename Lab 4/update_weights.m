@@ -12,3 +12,4 @@ function [x_final, iterations] = update_weights(w, x, iterlimit)
         x = x_final;
     end
     x_final = x_final';
+end
