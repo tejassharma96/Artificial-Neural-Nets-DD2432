@@ -33,7 +33,7 @@ subplot(2, 2, 3);
 vis(p2_from_degraded);
 title(['p22 after ' num2str(it_p22) ' iterations']);
 
-% iterations = 0;
+update_patterns_sequential(w, p11);
 % converged = false;
 % x = p11';
 % x_final = p11';
@@ -53,6 +53,3 @@ title(['p22 after ' num2str(it_p22) ' iterations']);
 %         x = x_final;
 %     end
 % end
-
-figure;
-update_patterns_sequential(w, p11);
