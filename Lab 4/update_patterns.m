@@ -1,4 +1,4 @@
-function [x_final, iterations] = update_weights(w, x, iterlimit)
+function [x_final, iterations] = update_patterns(w, x, iterlimit)
     x = x';
     if nargin < 3
         iterlimit = 100;

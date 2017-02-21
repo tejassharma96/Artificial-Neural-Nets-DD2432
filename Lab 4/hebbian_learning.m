@@ -25,5 +25,7 @@ x2d=vm([1 1 0 0 0 1 0 0]);
 x3d=vm([1 1 1 0 1 1 0 1]);
 
 test_patterns = [x1d; x2d; x3d];
-for x in test_patterns
+for x = test_patterns'
+    [x_updated, it] = update_weights
+end
 
