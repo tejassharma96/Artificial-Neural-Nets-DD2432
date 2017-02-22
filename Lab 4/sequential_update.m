@@ -33,7 +33,10 @@ subplot(2, 2, 3);
 vis(p2_from_degraded);
 title(['p22 after ' num2str(it_p22) ' iterations']);
 
-% iterations = 0;
+fprintf('Energy at:\n\tp1 =\t%f\n\tp11=\t%f\n', - p1 * w * p1', - p11 * w * p11')
+fprintf('Energy at:\n\tp2 =\t%f\n\tp22=\t%f\n', - p2 * w * p2', - p22 * w * p22')
+
+update_patterns_sequential(w, p11);
 % converged = false;
 % x = p11';
 % x_final = p11';
@@ -53,6 +56,5 @@ title(['p22 after ' num2str(it_p22) ' iterations']);
 %         x = x_final;
 %     end
 % end
-
-figure;
+w = 0.5*(w+w');
 update_patterns_sequential(w, p11);
